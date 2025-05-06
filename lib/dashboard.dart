@@ -54,43 +54,46 @@ class HomeScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 12),
                     // Grid Menu Ikon
-                   GridView.count(
-                crossAxisCount: 4,
-  shrinkWrap: true,
-  physics: NeverScrollableScrollPhysics(),
-  crossAxisSpacing: 12,
-  mainAxisSpacing: 12,
-  children: List.generate(menuItems.length, (index) {
-    final item = menuItems[index];
-    return InkWell(
-     onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => item['form']),
-        );
-      },
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0xFFD6BD9C),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(item['icon'], size: 28, color: Colors.white),
-            SizedBox(height: 8),
-            Text(
-              item['label'],
-              style: TextStyle(color: Colors.white, fontSize: 12),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }),
-)
+                    GridView.count(
+                      crossAxisCount: 4,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      children: List.generate(menuItems.length, (index) {
+                        final item = menuItems[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => item['form']),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFD6BD9C),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(item['icon'],
+                                    size: 28, color: Colors.white),
+                                SizedBox(height: 8),
+                                Text(
+                                  item['label'],
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    )
                   ],
                 ),
               ),
@@ -99,7 +102,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: GridView.builder(
-                  itemCount: 6,
+                  itemCount: produkList.length,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -109,36 +112,37 @@ class HomeScreen extends StatelessWidget {
                     childAspectRatio: 3 / 4,
                   ),
                   itemBuilder: (context, index) {
+                    final produk = produkList[index];
                     return Container(
                       decoration: BoxDecoration(
                         color: Color(0xFFD6BD9C),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                     child: Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    // Gambar produk
-    Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(16),
-          ),
-        ),
-        child: Image.asset(
-          'assets/images/soto.jpg', // Ganti dengan path gambar yang sesuai
-          fit: BoxFit.cover,  // Menyesuaikan gambar agar pas dalam container
-        ),
-      ),
-    ),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("Soto\nRp 12.000"),
-    ),
-  ],
-),
-
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Gambar produk
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16),
+                                ),
+                              ),
+                              child: Image.asset(
+                                produk['gambar'],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child:
+                                Text("${produk['nama']}\n${produk['harga']}"),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -149,14 +153,43 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
   final List<Map<String, dynamic>> menuItems = [
-  {'icon': Icons.fastfood, 'label': 'Makanan', 'form' : Makanan()},
-  {'icon': Icons.local_drink, 'label': 'Minuman', 'form' : Minuman()},
-  {'icon': Icons.cake, 'label': 'Kue','form' : Kue()},
-  {'icon': Icons.icecream, 'label': 'Es Krim', 'form' : EsKrim()},
-  {'icon': Icons.rice_bowl, 'label': 'Nasi', 'form': Nasi()},
-  {'icon': Icons.local_pizza, 'label': 'Pizza', 'form': Pizza()},
-  {'icon': Icons.local_cafe, 'label': 'Kopi', 'form' : Kopi()},
-  {'icon': Icons.more_horiz, 'label': 'Lainnya'},
-];
+    {'icon': Icons.fastfood, 'label': 'Makanan', 'form': Makanan()},
+    {'icon': Icons.local_drink, 'label': 'Minuman', 'form': Minuman()},
+    {'icon': Icons.cake, 'label': 'Kue', 'form': Kue()},
+    {'icon': Icons.icecream, 'label': 'Es Krim', 'form': EsKrim()},
+    {'icon': Icons.rice_bowl, 'label': 'Nasi', 'form': Nasi()},
+    {'icon': Icons.local_pizza, 'label': 'Pizza', 'form': Pizza()},
+    {'icon': Icons.local_cafe, 'label': 'Kopi', 'form': Kopi()},
+    {'icon': Icons.more_horiz, 'label': 'Lainnya'},
+  ];
+  final List<Map<String, dynamic>> produkList = [
+    {'nama': 'Soto', 'harga': 'Rp 12.000', 'gambar': 'images/soto.jpg'},
+    {
+      'nama': 'Es Serut Pak Pardio',
+      'harga': 'Rp 145.000',
+      'gambar': 'images/esserut.jpg'
+    },
+    {
+      'nama': 'Nasi Jamblang',
+      'harga': 'Rp 20.000',
+      'gambar': 'images/nasijamblang.jpg'
+    },
+    {
+      'nama': 'Pizza Bakwan',
+      'harga': 'Rp 20.000',
+      'gambar': 'images/pizzabakwan.jpg'
+    },
+    {
+      'nama': 'Kopi Vietnam Drip',
+      'harga': 'Rp 20.000',
+      'gambar': 'images/vietnamdrip.jpg'
+    },
+    {
+      'nama': 'Kue Cubit',
+      'harga': 'Rp 20.000',
+      'gambar': 'images/kuecubit.jpg'
+    },
+  ];
 }

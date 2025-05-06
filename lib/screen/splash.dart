@@ -13,7 +13,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) =>HomeScreen()), // Nama kelas harus PascalCase
+        MaterialPageRoute(
+            builder: (context) => HomeScreen()), // Nama kelas harus PascalCase
       );
     });
   }
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'asset/jawa.png',
+              'jawa.png',
               width: 150,
             ),
             SizedBox(height: 20),

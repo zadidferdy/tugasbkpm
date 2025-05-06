@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl: ^0.20.2
   font_awesome_flutter: ^10.8.0
+  
+    # Tambahan baru:
+  provider: ^6.1.1   # For state management
+  shared_preferences: ^2.2.2  # For local storage
+  http: ^1.2.1        # For API calls
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +61,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-     - assets/images/soto.jpg
+    - assets/images/
 
 
 
